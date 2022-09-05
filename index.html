@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>GithubApi</title>
+   <link rel="stylesheet" href="style/style.css" />
+</head>
+
+<body>
+   <div class='wrapper'>
+      <div class='search-block'>
+         <h1 class="search-block__title">
+            <img src="https://code.s3.yandex.net/web-code/entrance-test/github-logo.svg" alt=""> GitHub поиск
+         </h1>
+         <input type="text" class='search-block__input' id="search-block__input" placeholder='Github search'>
+         <button id='search-button'>search</button>
+         </h2>
+      </div>
+      <div class='result-block'>
+         <div class='result-count'>
+            <span id='result-count__number'></span>
+
+         </div>
+         <div id='result-items'></div>
+      </div>
+   </div>
+   <script src="code.js"></script>
+</body>
+
+</html>

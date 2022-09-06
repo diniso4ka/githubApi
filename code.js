@@ -4,6 +4,8 @@ const searchButton = document.getElementById('search-button')
 
 
 let loadingElement = document.createElement('p')
+let errorElement = document.createElement('p')
+
 const value = inputButton.value
 
 
@@ -12,13 +14,21 @@ const createCountElement = (data) => {
 }
 
 const createLoadingElement = () => {
-   const resultList = document.getElementById('result-items')
    loadingElement.innerHTML = 'Идёт загрузка'
-   resultList.append(loadingElement)
+   resultCount.append(loadingElement)
 }
 
 const deleteLoadingElement = () => {
    loadingElement.innerHTML = ''
+}
+
+const createErrorElement = (text) => {
+   errorElement.innerHTML = text
+   resultCount.append(errorElement)
+}
+
+const deleteErrorElement = () => {
+   errorElement.innerHTML = ''
 }
 
 const loadItemList = async (searchValue) => {
@@ -26,6 +36,7 @@ const loadItemList = async (searchValue) => {
       const resultList = document.getElementById('result-items')
       const resultCount = document.getElementById('result-count')
       resultCount.firstChild.remove()
+      deleteErrorElement()
       resultList.innerHTML = ''
       createLoadingElement()
       const data = await fetch(`https://api.nomoreparties.co/github-search?q=${searchValue}`).then(res => res.json())
@@ -76,13 +87,6 @@ const createItem = (path, link, desc) => {
    resultList.append(newItem)
 }
 
-
-const createErrorElement = (text) => {
-   const content = document.querySelector('.result-container')
-   let div = document.createElement('div')
-   div.innerHTML = text
-   content.prepend(div)
-}
 
 const loadData = () => {
    loadItemList(inputButton.value)

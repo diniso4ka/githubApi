@@ -1,1 +1,1 @@
-<a href='https://diniso4ka.github.io/githunApi/'>Посмотреть</a>
+<a href='https://diniso4ka.github.io/githubApi/'>Посмотреть</a>

@@ -25,9 +25,20 @@ body {
 .search-block__input {
    width: 100%;
    padding: 15px;
-   border-radius: 30px;
+   border-radius: 25px 0 0 25px;
    border: 1px solid #000;
+   border-right: none;
    font-size: 16px;
+}
+
+.search-button {
+   border: 1px solid #000;
+   width: 100px;
+   border-radius: 0 25px 25px 0;
+}
+
+.search-wrapper {
+   display: flex;
 }
 
 #result-item {
@@ -37,15 +48,28 @@ body {
 
 .item-card {
    width: 100%;
-   background-color: rgb(214, 205, 205);
+   background-color: rgb(241, 237, 237);
+   border-radius: 15px;
    margin: 5px 0 5px 0;
+   display: flex;
+
+   align-items: center;
 }
 
 .item-img {
    width: 35px;
    height: 35px;
+   margin: 0 0 0 5px;
 }
 
+.item-text {
+   margin: 13px;
+}
+
+.item-desc {
+   margin: 10px 0 0 0;
+   padding: 0;
+}
 
 .card-name {
    padding: 5px 0 0 0;

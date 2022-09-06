@@ -8,6 +8,10 @@ let errorElement = document.createElement('p')
 
 const value = inputButton.value
 
+const renderElement = (func) => {
+
+}
+
 
 const createCountElement = (data) => {
    data.total_count ? resultCount.innerHTML = `Найдено ${data.total_count} результатов` : null;
@@ -41,7 +45,7 @@ const loadItemList = async (searchValue) => {
       deleteErrorElement()
       resultList.innerHTML = ''
       createLoadingElement()
-      const data = await fetch(`https://api.nomoreparties.co/github-search?q=${searchValue}`).then(res => res.json())
+      const data = await fetch(`https://api.nomoreparties.co/github-search?q=${searchValue}&per_page=10`).then(res => res.json())
       deleteLoadingElement()
       if (data.total_count) {
          createCountElement(data)

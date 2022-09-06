@@ -15,6 +15,7 @@ const createCountElement = (data) => {
 
 const createLoadingElement = () => {
    loadingElement.innerHTML = 'Идёт загрузка'
+   loadingElement.classList.add('load')
    resultCount.append(loadingElement)
 }
 
@@ -24,6 +25,7 @@ const deleteLoadingElement = () => {
 
 const createErrorElement = (text) => {
    errorElement.innerHTML = text
+   errorElement.classList.add('load')
    resultCount.append(errorElement)
 }
 

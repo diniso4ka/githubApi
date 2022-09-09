@@ -39,8 +39,8 @@ const deleteErrorElement = () => {
 
 const loadItemList = async (searchValue) => {
    try {
-      const resultList = document.getElementById('result-items')
-      const resultCount = document.querySelector('#result-count')
+      const resultList = document.querySelector('.result-items')
+      const resultCount = document.querySelector('.result-count')
       resultCount.firstChild.remove()
       deleteErrorElement()
       resultList.innerHTML = ''
@@ -51,10 +51,11 @@ const loadItemList = async (searchValue) => {
          createCountElement(data)
          data.items.forEach(item => renderElement(createItem(item.full_name, item.html_url, item.description), resultList))
       } else {
-         renderElement(createCountElement('Ничего не найдено.'), resultCount)
+         renderElement(createErrorElement('Ничего не найдено.'), resultCount)
       }
    } catch (error) {
-      renderElement(createCountElement('Произошла ошибка.'), resultCount)
+      const resultCount = document.querySelector('.result-count')
+      renderElement(createErrorElement('Произошла ошибка.'), resultCount)
       console.log(error)
    }
 }
@@ -62,8 +63,6 @@ const loadItemList = async (searchValue) => {
 
 
 const createItem = (path, link, desc) => {
-   const resultList = document.getElementById('result-items')
-
    const newItem = document.createElement('div')
    newItem.classList.add('item-card')
 

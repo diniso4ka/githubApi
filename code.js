@@ -1,4 +1,3 @@
-const resultCount = document.getElementById('result-count')
 const inputButton = document.getElementById('search-block__input')
 const searchButton = document.getElementById('search-button')
 
@@ -8,19 +7,20 @@ let errorElement = document.createElement('p')
 
 const value = inputButton.value
 
-const renderElement = (func) => {
-
+const renderElement = (element, container) => {
+   container.append(element)
 }
 
 
 const createCountElement = (data) => {
+   const resultCount = document.querySelector('.result-count')
    data.total_count ? resultCount.innerHTML = `Найдено ${data.total_count} результатов` : null;
 }
 
 const createLoadingElement = () => {
    loadingElement.innerHTML = 'Идёт загрузка'
    loadingElement.classList.add('load')
-   resultCount.append(loadingElement)
+   return loadingElement
 }
 
 const deleteLoadingElement = () => {
@@ -30,7 +30,7 @@ const deleteLoadingElement = () => {
 const createErrorElement = (text) => {
    errorElement.innerHTML = text
    errorElement.classList.add('load')
-   resultCount.append(errorElement)
+   return errorElement
 }
 
 const deleteErrorElement = () => {
@@ -40,21 +40,22 @@ const deleteErrorElement = () => {
 const loadItemList = async (searchValue) => {
    try {
       const resultList = document.getElementById('result-items')
-      const resultCount = document.getElementById('result-count')
+      const resultCount = document.querySelector('#result-count')
       resultCount.firstChild.remove()
       deleteErrorElement()
       resultList.innerHTML = ''
-      createLoadingElement()
+      renderElement(createLoadingElement(), resultCount)
       const data = await fetch(`https://api.nomoreparties.co/github-search?q=${searchValue}&per_page=10`).then(res => res.json())
       deleteLoadingElement()
       if (data.total_count) {
          createCountElement(data)
-         data.items.forEach(item => createItem(item.full_name, item.html_url, item.description))
+         data.items.forEach(item => renderElement(createItem(item.full_name, item.html_url, item.description), resultList))
       } else {
-         createErrorElement('Ничего не найдено.')
+         renderElement(createCountElement('Ничего не найдено.'), resultCount)
       }
    } catch (error) {
-      createErrorElement('Произошла ошибка.')
+      renderElement(createCountElement('Произошла ошибка.'), resultCount)
+      console.log(error)
    }
 }
 
@@ -89,14 +90,14 @@ const createItem = (path, link, desc) => {
    itemDesc.innerHTML = desc
    itemText.append(itemDesc)
 
-
-   resultList.append(newItem)
+   return newItem
 }
 
 
 const loadData = () => {
    loadItemList(inputButton.value)
 }
+
 
 
 

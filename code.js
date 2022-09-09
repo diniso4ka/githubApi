@@ -1,5 +1,5 @@
-const inputButton = document.getElementById('search-block__input')
-const searchButton = document.getElementById('search-button')
+const inputButton = document.querySelector('.search-block__input')
+const searchButton = document.querySelector('.search-button')
 
 
 let loadingElement = document.createElement('p')

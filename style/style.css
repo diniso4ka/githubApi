@@ -45,7 +45,7 @@ body {
    display: flex;
 }
 
-#result-item {
+.result-item {
    max-width: 1440px;
    margin: 0 auto;
 }
